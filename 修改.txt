@@ -1,5 +1,5 @@
 忘记了，跑的时候运行命令：
-rtmpdump.exe -r "rtmp://172.17.230.31/live/gxu" -g
+rtmpdump.exe -r "rtmp://192.168.1.2/live/temp" -g
 
   下午简单看了下rtmpdump的代码，修改了下代码基本就可以满足你们要求了。
      你们去监测输出的时候可以关注两种类型[INFO][WARNING]
@@ -16,9 +16,9 @@ INFO:   height                1080.00
 INFO:   videodatarate         1000.00
 INFO:   framerate             25.00
 INFO:   videocodecid          7.00
-INFO:   server                SRS/2.0.185(ZhouGuowen)
+INFO:   server                SRS/2.0.185(123)
 INFO:   srs_primary           SRS/1.0release
-INFO:   srs_authors           winlin,wenjie.zhao
+INFO:   srs_authors           test,admin
 INFO:   server_version        2.0.185
 以上是获取到的一些基本信息
 
