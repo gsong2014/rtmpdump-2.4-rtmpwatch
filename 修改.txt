@@ -1,0 +1,45 @@
+忘记了，跑的时候运行命令：
+rtmpdump.exe -r "rtmp://172.17.230.31/live/gxu" -g
+
+  下午简单看了下rtmpdump的代码，修改了下代码基本就可以满足你们要求了。
+     你们去监测输出的时候可以关注两种类型[INFO][WARNING]
+
+INFO: Metadata:
+INFO:   audiosamplerate       32000.00
+INFO:   audiosamplesize       16.00
+INFO:   stereo                TRUE
+INFO:   audiocodecid          10.00
+INFO:   audiodatarate         64.00
+INFO:   audiodelay            0.00
+INFO:   width                 1920.00
+INFO:   height                1080.00
+INFO:   videodatarate         1000.00
+INFO:   framerate             25.00
+INFO:   videocodecid          7.00
+INFO:   server                SRS/2.0.185(ZhouGuowen)
+INFO:   srs_primary           SRS/1.0release
+INFO:   srs_authors           winlin,wenjie.zhao
+INFO:   server_version        2.0.185
+以上是获取到的一些基本信息
+
+INFO: audio systime[0], pts[0] 音频的时间戳信息，收到时间戳时的对应系统时间，单位毫秒
+INFO: video systime[0], pts[0]  视频的时间戳信息，收到时间戳时的对应系统时间
+INFO: video systime[0], pts[10]
+INFO: audio systime[4], pts[30]
+INFO: video systime[4], pts[50]
+INFO: audio systime[4], pts[62]
+INFO: video systime[4], pts[90]
+INFO: audio systime[4], pts[94]
+INFO: audio systime[4], pts[126]
+INFO: video systime[4], pts[130]
+......
+INFO: video systime[2166], fps[25.57] 视频的FPS信息，收到时的对应系统时间
+......
+WARNING: video systime[3319], pts jumped[1120,1150] 视频的帧间隔时间变化，收到时的对应系统时间
+......
+WARNING: audio systime[5319], pts jumped[1120,1150] 音频的帧间隔时间变化，收到时的对应系统时间
+
+     代码和编码出来的EXE在附件，用mingw环境直接编译就可以了。
+     如果要在linux下编译，直接修改Makefile_linux为Makefile，librtmp\Makefile_linux为librtmp\Makefile
+
+     主要修改文件librtmp\rtmp.c和rtmpdump.c，搜索"rtmpwatch"关键字就可以了
